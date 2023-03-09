@@ -39,8 +39,10 @@ button:active {
 }
 
 .page-container {
-  position: relative;
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100dvh;
 }
 
 /* HEADER */
@@ -51,22 +53,23 @@ header {
 .header-text {
   text-align: center;
   font-family: "Cartoon Blocks", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: clamp(3rem, 7vw, 5rem);
+  font-size: clamp(3rem, 10vw, 5rem);
 }
 
 /* MAIN */
 main {
-  padding-bottom: 3rem;
+  flex: 1;
 }
+
 .sketch {
   border-radius: 0.35rem;
   margin: 0 auto;
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 500px;
 
-  -webkit-box-shadow: -8px 8px 24px 0px rgba(198, 198, 198, 1);
-  -moz-box-shadow: -8px 8px 24px 0px rgba(198, 198, 198, 1);
-  box-shadow: -8px 8px 24px 0px rgba(198, 198, 198, 1);
+  -webkit-box-shadow: 8px 8px 24px 0px rgba(183, 181, 181, 1);
+  -moz-box-shadow: 8px 8px 24px 0px rgba(183, 181, 181, 1);
+  box-shadow: 8px 8px 24px 0px rgba(183, 181, 181, 1);
 
   display: grid;
   overflow: hidden;
@@ -79,7 +82,7 @@ main {
 }
 
 .sketch-pixel:hover {
-  border-color: hsla(0, 0%, 0%);
+  border-color: hsl(0, 0%, 0%);
 }
 
 .btn-clear {
@@ -96,10 +99,9 @@ main {
 
 /* FOOTER */
 .footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   padding: 1rem 1rem;
+  margin-top: 1rem;
 
   display: flex;
   flex-wrap: wrap;
@@ -117,6 +119,7 @@ main {
   /* filter: invert(1); */
   height: auto;
   width: clamp(1.25rem, 4vw, 1.5rem);
+
   transition: transform 0.3s ease-in-out;
 }
 
