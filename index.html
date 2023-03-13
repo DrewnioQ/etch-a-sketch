@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="styles.css" />
-    <!-- <style>
-      @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
-    </style> -->
     <script src="script.js" defer></script>
   </head>
   <body>
@@ -16,11 +13,49 @@
       <header>
         <h1 class="header-text">Etch-A-Sketch</h1>
       </header>
-      <main>
-        <div class="sketch container" id="sketchContainer"></div>
-        <button class="btn-clear" id="clearBtn">CLEAR</button>
+      <main class="main">
+        <div class="sidebar" id="sidebarLeft">
+          <div class="interface-container">
+            <div class="mode-buttons">
+              <div class="paint-color-container">
+                <input
+                  type="color"
+                  id="paintColor"
+                  name="paintColor"
+                  value="#ff0000"
+                />
+                <label for="paintColor" class="paint-color-text"
+                  ><p>Paint color</p></label
+                >
+              </div>
+              <button class="btn-interface btn-rainbow" id="rainbowBtn">
+                RAINBOW
+              </button>
+              <button class="btn-interface btn-erase" id="eraseBtn">
+                ERASE
+              </button>
+            </div>
+            <div class="slider-container">
+              <!-- <p>Grid size</p> -->
+              <p id="gridSizeText">24 x 24</p>
+              <input
+                type="range"
+                min="1"
+                max="64"
+                value="24"
+                class="slider"
+                id="sizeSlider"
+              />
+            </div>
+            <button class="btn-interface btn-clear" id="clearBtn">CLEAR</button>
+          </div>
+        </div>
+        <div class="sketch-container">
+          <div class="sketch" id="sketch"></div>
+        </div>
+        <div class="sidebar" id="sidebarRight"></div>
       </main>
-      <footer class="container footer">
+      <footer class="footer">
         <p class="footer-text">Copyright © konraddebski 2023</p>
         <a href="https://github.com/DrewnioQ" target="_blank">
           <img class="github-link" src="./icons/github.svg" alt="GitHub link" />
