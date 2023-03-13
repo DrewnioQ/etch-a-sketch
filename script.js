@@ -1,3 +1,5 @@
+let ACTIVE_MODE = "color";
+
 const sketch = document.getElementById("sketch");
 const colorPicker = document.getElementById("paintColor");
 const rainbowBtn = document.getElementById("rainbowBtn");
@@ -5,7 +7,11 @@ const eraseBtn = document.getElementById("eraseBtn");
 const gridSizeText = document.getElementById("gridSizeText");
 const sizeSlider = document.getElementById("sizeSlider");
 const clearBtn = document.getElementById("clearBtn");
+const modeButtons = document.querySelectorAll(".mode");
 
+colorPicker.addEventListener("click", (e) => setActiveMode(e.target));
+rainbowBtn.addEventListener("click", (e) => setActiveMode(e.target));
+eraseBtn.addEventListener("click", (e) => setActiveMode(e.target));
 clearBtn.addEventListener("click", () => clearSketch());
 sizeSlider.addEventListener("input", () => {
   gridSizeText.textContent = `${sizeSlider.value} x ${sizeSlider.value}`;
@@ -32,10 +38,10 @@ function createSketchPixels(size2D) {
     pixel.classList.add("sketch-pixel");
     // Fill color on hover only if mouse is down
     pixel.addEventListener("mouseover", () => {
-      if (mouseDown) fillColor(pixel, colorPicker.value);
+      if (mouseDown) fillColor(pixel);
     });
     pixel.addEventListener("mousedown", () => {
-      fillColor(pixel, colorPicker.value);
+      fillColor(pixel);
     });
     sketch.appendChild(pixel);
   }
@@ -47,8 +53,36 @@ function removeSketchPixels() {
   }
 }
 
-function fillColor(div, color) {
-  div.style.backgroundColor = `${color}`;
+function setActiveMode(button) {
+  Array.from(modeButtons).forEach((modeButton) => {
+    console.log(modeButton);
+    if (modeButton === colorPicker) {
+      modeButton.classList.remove("paintColor--active");
+    } else {
+      modeButton.classList.remove("btn-interface--active");
+    }
+  });
+
+  if (button === colorPicker) {
+    colorPicker.classList.add("paintColor--active");
+    ACTIVE_MODE = "color";
+  } else if (button === rainbowBtn) {
+    rainbowBtn.classList.add("btn-interface--active");
+    ACTIVE_MODE = "rainbow";
+  } else if (button === eraseBtn) {
+    eraseBtn.classList.add("btn-interface--active");
+    ACTIVE_MODE = "erase";
+  }
+}
+
+function fillColor(div) {
+  if (ACTIVE_MODE === "color") div.style.backgroundColor = colorPicker.value;
+  else if (ACTIVE_MODE === "rainbow") {
+    const R = Math.floor(Math.random() * 255);
+    const G = Math.floor(Math.random() * 255);
+    const B = Math.floor(Math.random() * 255);
+    div.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
+  } else if (ACTIVE_MODE === "erase") div.removeAttribute("style");
 }
 
 function clearSketch() {
@@ -60,4 +94,5 @@ function clearSketch() {
 
 window.onload = () => {
   drawSketchPixels(sizeSlider.value);
+  setActiveMode(colorPicker);
 };

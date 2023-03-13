@@ -5,6 +5,8 @@
   --background-light-hover: hsl(222, 11%, 35%);
   --text-light: hsl(0, 0%, 85%);
   --text-title: hsl(42, 90%, 65%);
+  --btn-background-dark: hsl(0, 0%, 0%);
+  --btn-background-light: hsl(0, 0%, 100%);
 }
 
 *,
@@ -33,16 +35,10 @@ button {
   border: none;
   cursor: pointer;
 }
-button:hover {
-  background-color: var(--background-light);
-}
-button:active {
-  background-color: var(--background-light-hover);
-}
-button:focus {
+/* button:focus {
   outline: 0.2rem solid black;
   outline-offset: 0.2rem;
-}
+} */
 
 .page-container {
   display: flex;
@@ -134,8 +130,8 @@ header {
 #paintColor:hover {
   transform: scale(1.1);
 }
-#paintColor:focus {
-  outline: 0.2rem solid var(--background-dark);
+.paintColor--active {
+  outline: 0.2rem solid var(--btn-background-dark);
   outline-offset: 0.25rem;
 
   box-shadow: none;
@@ -155,37 +151,37 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 .btn-interface {
-  display: block;
   padding: 0.75rem 1.25rem;
 
-  background-color: var(--background-dark);
+  background-color: var(--btn-background-dark);
   border-radius: 0.35rem;
 
+  font-family: "Ubuntu title", sans-serif;
   font-size: clamp(1rem, 10vw, 1.5rem);
   color: var(--text-light);
 
   transition: background 0.2s, color 0.1s, box-shadow 0.3s,
-    transform 0.3s ease-in-out;
+    transform 0.1s ease-in-out;
 }
 .btn-interface:hover {
-  background-color: rgba(0, 0, 0, 0);
-  outline: 0.2rem solid var(--background-dark);
-  color: var(--background-dark);
+  outline: 0.2rem solid var(--btn-background-dark);
+  outline-offset: 0.2rem;
   transform: scale(1.025);
 
   -webkit-box-shadow: 8px 8px 24px 0px rgba(183, 181, 181, 1);
   -moz-box-shadow: 8px 8px 24px 0px rgba(183, 181, 181, 1);
   box-shadow: 8px 8px 24px 0px rgba(183, 183, 183, 1);
 }
-.btn-interface:active:not(.btn-clear) {
-  background-color: rgba(0, 0, 0, 0);
-  outline: 0.2rem solid var(--background-dark);
-  color: var(--background-dark);
-  transform: scale(1.025);
+.btn-interface--active {
+  outline: 0.2rem solid var(--btn-background-dark);
+  outline-offset: 0.2rem;
+
+  background-color: var(--btn-background-light);
+  color: var(--btn-background-dark);
 
   -webkit-box-shadow: 8px 8px 24px 0px rgba(183, 181, 181, 1);
   -moz-box-shadow: 8px 8px 24px 0px rgba(183, 181, 181, 1);
-  box-shadow: 8px 8px 24px 0px rgb(110, 110, 110);
+  box-shadow: 8px 8px 24px 0px rgba(183, 183, 183, 1);
 }
 
 .slider-container {
